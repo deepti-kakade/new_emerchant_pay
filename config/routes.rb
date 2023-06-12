@@ -4,6 +4,9 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
   # resources :users
+  resources :merchants, except: [:new, :create]
   resources :transactions
   post "/auth/login", to: "authentication#login"
+
+  root "merchants#index"
 end

@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+# execute rake task with this command: rake import:import_users[file]
+# For example: rake import:import_users["/Users/deeptikakade/Projects/new_emerchant_pay/lib/tasks/import_users.csv"]
+
 require 'csv'
 
 namespace :import do
