@@ -3,6 +3,7 @@
 class AuthenticationController < ApplicationController
   skip_before_action :authenticate_user
 
+  # http://localhost:3000/auth/login
   def login
     @user = User.find_by(email: params[:email])
     if @user&.authenticate(params[:password])
