@@ -1,0 +1,6 @@
+# runs every 1 hour
+delete_transaction_job:
+  cron: "0 */1 * * *"
+  class: "DeleteTransactionJob"
+  queue: default
+  active_job: true
