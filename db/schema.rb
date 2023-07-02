@@ -10,31 +10,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_12_041047) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_01_111929) do
   create_table "transactions", force: :cascade do |t|
     t.string "uuid", null: false
     t.string "customer_email", null: false
     t.string "customer_phone", null: false
     t.decimal "amount", precision: 20, scale: 2, default: "0.0"
     t.integer "status", default: 0, null: false
-    t.integer "merchant_id"
+    t.string "type"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["merchant_id"], name: "index_transactions_on_merchant_id"
+    t.index ["user_id"], name: "index_transactions_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
     t.string "name", null: false
     t.text "description"
-    t.string "email", null: false
-    t.string "password_digest", null: false
     t.decimal "total_transaction_sum", precision: 20, scale: 2, default: "0.0"
     t.integer "status", default: 0, null: false
     t.string "type"
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["status"], name: "index_users_on_status"
   end
 
-  add_foreign_key "transactions", "merchants"
+  add_foreign_key "transactions", "users"
 end
