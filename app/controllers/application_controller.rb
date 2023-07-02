@@ -5,27 +5,32 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery with: :null_session
 
-  before_action :authenticate_user
+  #before_action :authenticate_user
+  devise_group :user, contains: [:merchant, :admin]
 
-  private
+  def after_sign_in_path_for(resource)
+    merchants_path
+  end
 
-    def authenticate_user
-      begin
-        @current_user ||= User.find(decoded_auth_token[:user_id]) if decoded_auth_token
-      end
-    end
+  # private
 
-    def http_auth_header
-      headers = request.headers
-      if headers["Authorization"].present?
-        return headers["Authorization"].split(" ").last
-      else
-        raise "Missing token"
-      end
-      nil
-    end
+  #   def authenticate_user
+  #     begin
+  #       @current_user ||= User.find(decoded_auth_token[:user_id]) if decoded_auth_token
+  #     end
+  #   end
 
-    def decoded_auth_token
-      @decoded_auth_token ||= JwtToken.decode(http_auth_header)
-    end
+  #   def http_auth_header
+  #     headers = request.headers
+  #     if headers["Authorization"].present?
+  #       return headers["Authorization"].split(" ").last
+  #     else
+  #       raise "Missing token"
+  #     end
+  #     nil
+  #   end
+
+  #   def decoded_auth_token
+  #     @decoded_auth_token ||= JwtToken.decode(http_auth_header)
+  #   end
 end
