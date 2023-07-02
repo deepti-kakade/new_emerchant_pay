@@ -7,7 +7,7 @@ class CreateTransactions < ActiveRecord::Migration[7.0]
       t.decimal :amount, scale: 2, precision: 20, default: 0.0
       t.integer :status, null: false, default: 0
       t.string :type
-      t.belongs_to :user, foreign_key: true
+      t.references :merchant, index: true, null: false, foreign_key: {to_table: :users}
       
       t.timestamps
     end

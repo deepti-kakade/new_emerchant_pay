@@ -4,6 +4,7 @@ div.d-flex.flex-column.justify-content-center.min-vh-100
       div.card.p-4
         h4.card-title.text-center.mb-5
           | Log in
+        = render "devise/shared/error_messages", resource: resource
         = form_for(resource, as: resource_name, url: session_path(resource_name), data: { turbo: false }) do |f|
           div.form-group.mb-4
             = f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: "Email"

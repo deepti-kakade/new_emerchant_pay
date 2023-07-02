@@ -18,10 +18,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_01_111929) do
     t.decimal "amount", precision: 20, scale: 2, default: "0.0"
     t.integer "status", default: 0, null: false
     t.string "type"
-    t.integer "user_id"
+    t.integer "merchant_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_transactions_on_user_id"
+    t.index ["merchant_id"], name: "index_transactions_on_merchant_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -42,5 +42,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_01_111929) do
     t.index ["status"], name: "index_users_on_status"
   end
 
-  add_foreign_key "transactions", "users"
+  add_foreign_key "transactions", "users", column: "merchant_id"
 end

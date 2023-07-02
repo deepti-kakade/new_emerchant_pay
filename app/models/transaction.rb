@@ -2,7 +2,7 @@
 
 class Transaction < ApplicationRecord
 
-  belongs_to :merchant
+  belongs_to :merchant, class_name: 'User'
 
   enum status: [
     :approved,

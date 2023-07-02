@@ -98,4 +98,5 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
   gem "database_cleaner"
+  gem "rails-controller-testing"
 end

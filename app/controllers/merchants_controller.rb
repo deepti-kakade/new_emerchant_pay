@@ -32,6 +32,8 @@ class MerchantsController < ApplicationController
   end
 
   def destroy
+    authorize @merchant
+
     if @merchant.destroy   
       flash[:notice] = 'Merchant deleted!'   
       redirect_to merchants_path

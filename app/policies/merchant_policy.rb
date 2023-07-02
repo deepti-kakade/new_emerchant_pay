@@ -6,7 +6,7 @@ class MerchantPolicy < ApplicationPolicy
   end
 
   def show?
-    true
+    user.admin? || (user.merchant? && user.id == record.id)
   end
 
   def edit?
