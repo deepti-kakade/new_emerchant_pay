@@ -1,13 +1,18 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
-  require "securerandom"
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable
   
-  # We can use devise gem for the authentication.
-  has_secure_password
-  
-  enum status: [
-    :active,
-    :inactive
-  ]
+  enum status: { inactive: 0, active: 1 }
+
+  def admin?
+    type == 'Admin'
+  end
+
+  def merchant?
+    type == 'Merchant'
+  end
 end
