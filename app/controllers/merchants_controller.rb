@@ -22,9 +22,9 @@ class MerchantsController < ApplicationController
   def update
     authorize @merchant
 
-    if @merchant.update_attributes(merchant_params)   
+    if @merchant.update!(merchant_params)
       flash[:notice] = 'Merchant updated!'   
-      redirect_to root_path
+      redirect_to merchants_path
     else   
       flash[:error] = 'Failed to edit merchant!'   
       render :edit   

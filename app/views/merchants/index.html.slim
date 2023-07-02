@@ -28,5 +28,5 @@
           td.text-center
             div.d-flex.justify-content-center
               = button_to "Show", merchant_path(merchant), method: :get, class:"btn btn-primary m-2"
-              = button_to "Edit", merchant_path(merchant), method: :get, class:"btn btn-success m-2"
+              = button_to "Edit", edit_merchant_path(merchant), method: :get, class:"btn btn-success m-2"
               = button_to "Delete", merchant_path(merchant), method: :delete, data: { confirm: "Are you sure" }, class:"btn btn-danger m-2"

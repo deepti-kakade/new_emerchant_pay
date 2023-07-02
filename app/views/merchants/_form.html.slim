@@ -1,0 +1,15 @@
+= form_for(merchant, url: merchant_path(merchant), method: :put) do |f|
+  div.form-group.mb-4
+      = f.label :name
+      br
+      = f.text_field :name
+  div.form-group.mb-4
+    = f.label :description
+    br
+    = f.text_field :description
+  div.form-group.mb-4
+    = f.label :email
+    br
+    = f.email_field :email, autofocus: true, autocomplete: "email"
+  .actions
+    = f.submit "Update", class: "btn btn-primary btn-lg mb-4"
