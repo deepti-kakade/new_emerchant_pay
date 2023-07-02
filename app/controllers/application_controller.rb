@@ -2,10 +2,10 @@
 
 class ApplicationController < ActionController::Base
   include JwtToken
+  include Pundit::Authorization
 
   protect_from_forgery with: :null_session
 
-  #before_action :authenticate_user
   devise_group :user, contains: [:merchant, :admin]
 
   def after_sign_in_path_for(resource)

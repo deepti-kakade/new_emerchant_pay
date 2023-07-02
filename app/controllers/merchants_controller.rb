@@ -2,20 +2,26 @@
 
 class MerchantsController < ApplicationController
   before_action :authenticate_user!
-  before_action :merchant, except: [:index]
+  before_action :find_merchant, except: [:index]
 
   def index
     # We can use pagination here.
+    authorize Merchant
+
     @merchants = Merchant.all
   end
   
   def show
+    authorize @merchant
   end
 
   def edit
+    authorize @merchant
   end
 
   def update
+    authorize @merchant
+
     if @merchant.update_attributes(merchant_params)   
       flash[:notice] = 'Merchant updated!'   
       redirect_to root_path
@@ -41,7 +47,7 @@ class MerchantsController < ApplicationController
       params.require(:merchant).permit(:name, :email, :password, :description)
     end
 
-    def merchant
+    def find_merchant
       @merchant ||= Merchant.find_by!(id: params[:id])
     end
 end

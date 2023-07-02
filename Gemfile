@@ -51,10 +51,11 @@ gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
 gem "foreman"
-gem 'jwt'
-gem 'bcrypt'
-gem 'devise'
+gem "jwt"
+gem "bcrypt"
+gem "devise"
 gem "slim-rails"
+gem "pundit"
 # Use Sass to process CSS
 # gem "sassc-rails"
 
@@ -76,6 +77,8 @@ group :development, :test do
   gem 'rubocop-rspec', require: false
   gem 'letter_opener'
   gem 'faker' # Faker Gem for tests
+  # gem 'capybara'
+  # gem "selenium-webdriver", ">= 4.0.0"
 end
 
 group :development do
@@ -94,4 +97,5 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
   gem "webdrivers"
+  gem "database_cleaner"
 end
