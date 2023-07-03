@@ -67,6 +67,6 @@ bin/dev
 ```
 rake import:import_users[file]
 ```
-For example `rake import:import_users[lib/tasks/import_users.csv]`
+For example `rake import:import_users['lib/tasks/import_users.csv']`
 
 * DeleteTransactionJob will execute every 1 hour. Entry is added in the schedule.yml file.
